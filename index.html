@@ -1,95 +1,68 @@
-<!DOCTYPE html><html lang="hi">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Umesh Ads | ₹5 Ad Posting</title>
-  <style>
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fb}
-    header{background:#16a34a;color:#fff;padding:25px;text-align:center}
-    nav{background:#fff;padding:10px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.1)}
-    nav button{margin:5px;padding:8px 14px;border:none;border-radius:6px;background:#16a34a;color:#fff;cursor:pointer}
-    section{max-width:900px;margin:auto;padding:20px}
-    .card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}
-    input,textarea{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid #ccc}
-    .ad{border-bottom:1px solid #e5e7eb;padding:10px 0}
-    footer{background:#111827;color:#d1d5db;text-align:center;padding:15px}
-    .hidden{display:none}
-  </style>
+<meta charset="UTF-8">
+<title>Janpuseva – Helping the Needy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4;}
+header{background:#0a7c3a;color:white;padding:20px;text-align:center;}
+nav a{color:white;margin:10px;text-decoration:none;font-weight:bold;}
+section{padding:20px;background:white;margin:10px;}
+button{background:#0a7c3a;color:white;padding:10px 20px;border:none;font-size:16px;}
+footer{text-align:center;padding:10px;background:#222;color:white;}
+img{max-width:100%;border-radius:8px;}
+</style>
 </head>
-<body><header>
-  <h1>Umesh Ads Platform</h1>
-  <p>Post your company ad – ₹5 only (7 days)</p>
-</header><nav>
-  <button onclick="show('post')">Post Ad</button>
-  <button onclick="show('ads')">Live Ads</button>
-  <button onclick="show('admin')">Admin</button>
-</nav><section id="post" class="card">
-  <h2>Ad Post Karein / Post Your Ad</h2>
-  <p>₹5 payment karein is UPI par: <b>6263166756@ptyes</b></p>
-  <form onsubmit="submitAd();return false;">
-    <input id="company" placeholder="Company Name" required>
-    <textarea id="desc" placeholder="Ad Description" required></textarea>
-    <input id="contact" placeholder="Contact Number" required>
-    <input id="txn" placeholder="UPI Transaction ID" required>
-    <button>Submit Ad</button>
-  </form>
-</section><section id="ads" class="card hidden">
-  <h2>Approved Ads (7 Days)</h2>
-  <div id="adList"></div>
-</section><section id="admin" class="card hidden">
-  <h2>Admin Login</h2>
-  <input id="adminPass" placeholder="Password">
-  <button onclick="adminLogin()">Login</button>
-  <div id="adminPanel" class="hidden">
-    <h3>Pending Ads</h3>
-    <div id="pending"></div>
-  </div>
-</section><footer>© 2026 Umesh Ads</footer><script>
-const ADMIN_PASSWORD = 'Umesh123';
-let ads = JSON.parse(localStorage.getItem('ads')||'[]');
 
-function show(id){
- document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));
- document.getElementById(id).classList.remove('hidden');
- if(id==='ads') loadAds();
- if(id==='admin') loadPending();
-}
+<body>
 
-function submitAd(){
- ads.push({company:company.value,desc:desc.value,contact:contact.value,txn:txn.value,status:'pending',date:Date.now()});
- localStorage.setItem('ads',JSON.stringify(ads));
- alert('Ad submitted! Admin approval ke baad live hoga');
- document.querySelector('form').reset();
-}
+<header>
+<h1>JANPUSEVA</h1>
+<p>Serving Humanity | Garibon ke liye seva</p>
+<nav>
+<a href="#about">About</a>
+<a href="#work">Our Work</a>
+<a href="#donate">Donate</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
 
-function adminLogin(){
- if(adminPass.value===ADMIN_PASSWORD){
-   adminPanel.classList.remove('hidden');
-   loadPending();
- } else alert('Wrong password');
-}
+<section id="about">
+<h2>About Janpuseva</h2>
+<p>Janpuseva ek social initiative hai jo garib, anath aur zaruratmand logon ki madad karta hai.</p>
+</section>
 
-function loadPending(){
- pending.innerHTML='';
- ads.filter(a=>a.status==='pending').forEach((a,i)=>{
-  const d=document.createElement('div');
-  d.className='ad';
-  d.innerHTML=`<b>${a.company}</b><br>${a.desc}<br>Txn:${a.txn}<br><button onclick="approve(${i})">Approve</button>`;
-  pending.appendChild(d);
- });
-}
+<section id="work">
+<h2>Our Work</h2>
+<img src="photo1.jpg" alt="Helping Poor">
+<p>Food distribution, education support aur medical help.</p>
 
-function approve(i){ ads[i].status='approved'; localStorage.setItem('ads',JSON.stringify(ads)); loadPending(); }
+<h3>Our Video</h3>
+<iframe width="100%" height="250" 
+src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+allowfullscreen></iframe>
+</section>
 
-function loadAds(){
- adList.innerHTML='';
- const now=Date.now();
- ads.filter(a=>a.status==='approved' && now-a.date<7*24*60*60*1000)
- .forEach(a=>{
-  const d=document.createElement('div');d.className='ad';
-  d.innerHTML=`<b>${a.company}</b><br>${a.desc}<br>Contact:${a.contact}`;
-  adList.appendChild(d);
- });
-}
-</script></body>
+<section id="donate">
+<h2>Donate for a Cause ❤️</h2>
+<p>Aapka chhota sa donation kisi ki zindagi badal sakta hai.</p>
+
+<!-- PayPal / UPI link -->
+<a href="https://www.paypal.me/YOURNAME" target="_blank">
+<button>Donate Now</button>
+</a>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<p>Email: janpuseva@gmail.com</p>
+<p>Phone: +91-XXXXXXXXXX</p>
+</section>
+
+<footer>
+<p>© 2026 Janpuseva | All Rights Reserved</p>
+</footer>
+
+</body>
 </html>
